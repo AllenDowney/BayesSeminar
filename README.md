@@ -1,0 +1,2 @@
+# BayesSeminarWayfair
+Bayesian statistics seminars
