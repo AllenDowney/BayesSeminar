@@ -1,1 +1,1 @@
-This repo contains code for my tutorial, Bayesian Statistics Made Simple.
+This repository contains code and notebooks for a seminar on Bayesian statistics developed by Allen Downey for Wayfair.
