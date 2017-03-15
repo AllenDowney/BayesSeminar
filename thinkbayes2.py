@@ -2001,6 +2001,7 @@ def EvalWeibullPdf(x, lam, k):
     return k / lam * arg**(k-1) * np.exp(-arg**k)
 
 
+
 def EvalWeibullCdf(x, lam, k):
     """Evaluates CDF of the Weibull distribution."""
     arg = (x / lam)
@@ -2019,6 +2020,7 @@ def MakeWeibullPmf(lam, k, high, n=200):
     """
     xs = np.linspace(0, high, n)
     ps = EvalWeibullPdf(xs, lam, k)
+    ps[np.isinf(ps)] = 0
     return Pmf(dict(zip(xs, ps)))
 
 
