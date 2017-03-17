@@ -11,7 +11,7 @@ from __future__ import print_function, division
 import numpy as np
 import pandas as pd
 
-import thinkstats2
+import thinkbayes2
 import thinkplot
 
 from collections import Counter
@@ -82,8 +82,8 @@ class SurvivalFunction(object):
 
         returns: Pmf
         """
-        cdf = thinkstats2.Cdf(self.ts, 1-self.ss)
-        pmf = thinkstats2.Pmf()
+        cdf = thinkbayes2.Cdf(self.ts, 1-self.ss)
+        pmf = thinkbayes2.Pmf()
         for val, prob in cdf.Items():
             pmf.Set(val, prob)
 
@@ -93,7 +93,7 @@ class SurvivalFunction(object):
 
         return pmf
 
-    def RemainingLifetime(self, filler=None, func=thinkstats2.Pmf.Mean):
+    def RemainingLifetime(self, filler=None, func=thinkbayes2.Pmf.Mean):
         """Computes remaining lifetime as a function of age.
         func: function from conditional Pmf to expected liftime
         returns: Series that maps from age to remaining lifetime
@@ -201,7 +201,7 @@ def ConditionalSurvival(pmf, t0):
 
     returns: tuple of (ts, conditional survivals)
     """
-    cond = thinkstats2.Pmf()
+    cond = thinkbayes2.Pmf()
     for t, p in pmf.Items():
         if t >= t0:
             cond.Set(t-t0, p)
@@ -214,7 +214,7 @@ def PlotConditionalSurvival(durations):
 
     durations: list of durations
     """
-    pmf = thinkstats2.Pmf(durations)
+    pmf = thinkbayes2.Pmf(durations)
     
     times = [8, 16, 24, 32]
     thinkplot.PrePlot(len(times))
@@ -234,7 +234,7 @@ def PlotSurvival(complete):
     """
     thinkplot.PrePlot(3, rows=2)
 
-    cdf = thinkstats2.Cdf(complete, label='cdf')
+    cdf = thinkbayes2.Cdf(complete, label='cdf')
     sf = MakeSurvivalFromCdf(cdf, label='survival')
     print(cdf[13])
     print(sf[13])
